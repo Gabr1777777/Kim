@@ -63,6 +63,7 @@
         }
 
         .aside_bar__letter:hover {
+            /* Mantido o rosa original do hover para destaque */
             background: #e91e63;
         }
 
@@ -100,7 +101,8 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #e91e63;
+            /* ALTERAÇÃO 1: Cor da moldura mais clara */
+            border: 4px solid #f48fb1; 
         }
 
         #status-dot {
@@ -113,11 +115,15 @@
         .user_data__name h2 {
             font-size: 1.5rem;
             margin-bottom: 2px;
+            /* Opcional: Se quiser o nome KIM sempre rosa claro tbm: */
+            /* color: #f48fb1; */
         }
 
         .user_data__name span {
-            color: #888;
+            /* ALTERAÇÃO 2: Cor rosa claro para o ID */
+            color: #f48fb1;
             font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .user_about {
@@ -152,7 +158,7 @@
 
         .video_box {
             flex: 1;
-            min-height: 350px; /* Aumentado um pouco para melhor visualização */
+            min-height: 350px;
             border-radius: 15px;
             overflow: hidden;
             background: #000;
@@ -224,7 +230,7 @@
                             </div>
                             <div class="user_data__name">
                                 <h2>KIM</h2>
-                                <span>1443433871</span>
+                                <span>ID: 1443433871</span>
                             </div>
                         </div>
                         <div class="user_about">
@@ -252,6 +258,7 @@
     // 1. LÓGICA DO STATUS (xat API)
     async function updateStatus() {
         try {
+            // Nota: API pode falhar por CORS dependendo de onde rodar, mas a lógica está certa
             const res = await fetch('https://illuxat.com/api/online/Gabr');
             const json = await res.json();
             const dot = document.getElementById('status-dot');

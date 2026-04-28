@@ -18,6 +18,7 @@
             background-size: cover;
             color: #ffffff;
             padding: 20px;
+            overflow-x: hidden;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -52,7 +53,7 @@
         .aside_bar__letter {
             width: 45px;
             height: 45px;
-            background: rgba(34, 34, 34, 0.1); /* Opacidade ajustada para 10% */
+            background: rgba(34, 34, 34, 0.1); 
             border-radius: 8px;
             justify-content: center;
             align-items: center;
@@ -70,13 +71,12 @@
         /* Área de Conteúdo Principal */
         .main_content {
             flex: 1;
-            /* ALTERAÇÃO: Fundo com 10% de opacidade */
             background: rgba(26, 26, 26, 0.1); 
             border-radius: 20px;
             padding: 25px;
             gap: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px); /* Mantém um leve desfoque para legibilidade */
+            backdrop-filter: blur(5px); 
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -127,7 +127,6 @@
         }
 
         .user_about {
-            /* ALTERAÇÃO: Fundo do texto também com baixa opacidade */
             background: rgba(0, 0, 0, 0.2);
             padding: 15px;
             border-radius: 10px;
@@ -185,6 +184,29 @@
             display: none;
             z-index: 10000;
             animation: fadeIn 0.3s;
+        }
+
+        /* ESTILO DAS BORBOLETAS */
+        .butterfly-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            background: #f48fb1;
+            clip-path: polygon(50% 40%, 0% 0%, 20% 50%, 0% 100%, 50% 60%, 100% 100%, 80% 50%, 100% 0%);
+            opacity: 0.8;
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes flap {
+            from { transform: scaleX(1) rotate(0deg); }
+            to { transform: scaleX(0.5) rotate(10deg); }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(30px) scale(0.5);
+            }
         }
 
         @keyframes fadeIn {
@@ -250,6 +272,7 @@
 <div id="security-alert">Copyright - Acceso Prohibido</div>
 
 <script>
+    // SCRIPT STATUS ONLINE
     async function updateStatus() {
         try {
             const res = await fetch('https://illuxat.com/api/online/xKim');
@@ -270,6 +293,7 @@
     updateStatus();
     setInterval(updateStatus, 60000);
 
+    // SCRIPT PROTEÇÃO E SEGURANÇA
     (function() {
         const alertBox = document.getElementById('security-alert');
         function showAlert() {
@@ -285,6 +309,27 @@
         }, true);
         document.addEventListener('dragstart', (e) => { e.preventDefault(); });
     })();
+
+    // SCRIPT EFEITO BORBOLETAS
+    document.addEventListener('mousemove', function(e) {
+        if (Math.random() > 0.85) { 
+            const b = document.createElement('div');
+            b.className = 'butterfly-cursor';
+            
+            const size = Math.random() * 12 + 8 + 'px';
+            b.style.width = size;
+            b.style.height = size;
+            
+            b.style.left = e.clientX + 'px';
+            b.style.top = e.clientY + 'px';
+
+            document.body.appendChild(b);
+
+            b.style.animation = `flap 0.3s infinite alternate, fadeOut 2s forwards`;
+
+            setTimeout(() => { b.remove(); }, 2000);
+        }
+    });
 </script>
 
 </body>

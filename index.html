@@ -14,7 +14,9 @@
         }
 
         body {
-            background-color: #0f0f0f;
+            /* ALTERAÇÃO: Substituído fundo preto pelo GIF */
+            background: url('https://i.imgur.com/DzvEB9j.gif') no-repeat center center fixed;
+            background-size: cover;
             color: #ffffff;
             padding: 20px;
             -webkit-user-select: none;
@@ -51,7 +53,7 @@
         .aside_bar__letter {
             width: 45px;
             height: 45px;
-            background: #222;
+            background: rgba(34, 34, 34, 0.8); /* Opacidade para combinar com o fundo */
             border-radius: 8px;
             justify-content: center;
             align-items: center;
@@ -63,18 +65,18 @@
         }
 
         .aside_bar__letter:hover {
-            /* Mantido o rosa original do hover para destaque */
             background: #e91e63;
         }
 
         /* Área de Conteúdo */
         .main_content {
             flex: 1;
-            background: #1a1a1a;
+            background: rgba(26, 26, 26, 0.9); /* Adicionada transparência leve para o GIF aparecer no fundo */
             border-radius: 20px;
             padding: 25px;
             gap: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px); /* Efeito de desfoque no fundo do painel */
         }
 
         .main_left {
@@ -101,7 +103,6 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            /* ALTERAÇÃO 1: Cor da moldura mais clara */
             border: 4px solid #f48fb1; 
         }
 
@@ -115,19 +116,16 @@
         .user_data__name h2 {
             font-size: 1.5rem;
             margin-bottom: 2px;
-            /* Opcional: Se quiser o nome KIM sempre rosa claro tbm: */
-            /* color: #f48fb1; */
         }
 
         .user_data__name span {
-            /* ALTERAÇÃO 2: Cor rosa claro para o ID */
             color: #f48fb1;
             font-size: 0.9rem;
             font-weight: bold;
         }
 
         .user_about {
-            background: #252525;
+            background: rgba(37, 37, 37, 0.8);
             padding: 15px;
             border-radius: 10px;
             font-style: italic;
@@ -255,10 +253,8 @@
 <div id="security-alert">Copyright - Acesso Proibido</div>
 
 <script>
-    // 1. LÓGICA DO STATUS (xat API)
     async function updateStatus() {
         try {
-            // Nota: API pode falhar por CORS dependendo de onde rodar, mas a lógica está certa
             const res = await fetch('https://illuxat.com/api/online/Gabr');
             const json = await res.json();
             const dot = document.getElementById('status-dot');
@@ -266,10 +262,10 @@
             const isOnline = json.data?.status?.toLowerCase() === 'online';
             
             if (isOnline) {
-                dot.style.backgroundColor = "#22c55e"; // Verde
+                dot.style.backgroundColor = "#22c55e"; 
                 dot.title = "Online no xat";
             } else {
-                dot.style.backgroundColor = "#ef4444"; // Vermelho
+                dot.style.backgroundColor = "#ef4444"; 
                 dot.title = "Offline no xat";
             }
         } catch (e) {
@@ -280,7 +276,6 @@
     updateStatus();
     setInterval(updateStatus, 60000);
 
-    // 2. Travas de Segurança
     (function() {
         const alertBox = document.getElementById('security-alert');
 

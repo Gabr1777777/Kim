@@ -75,13 +75,14 @@
         /* Área de Conteúdo Principal */
         .main_content {
             flex: 1;
-            background: rgba(26, 26, 26, 1); /* ALTERADO PARA REMOVER A TRANSPARÊNCIA */
+            background: rgba(20, 20, 20, 0.65); /* AJUSTADO: Fundo semi-transparente para combinar com a página */
             border-radius: 20px;
             padding: 25px;
             gap: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px); 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px); /* AJUSTADO: Efeito de desfoque para dar elegância e leitura */
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .main_left {
@@ -180,9 +181,9 @@
             text-align: center;
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.7);
-            background: none; /* Remove o fundo */
-            border: none; /* Remove a borda */
-            backdrop-filter: none; /* Remove o desfoque */
+            background: none; 
+            border: none; 
+            backdrop-filter: none; 
         }
 
         footer b {

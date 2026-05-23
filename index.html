@@ -84,7 +84,8 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .main_left {
+        /* Agora posicionado à direita */
+        .main_right_side {
             flex-direction: column;
             width: 280px;
             gap: 20px;
@@ -140,8 +141,8 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,1);
         }
 
-        /* Banner e Video à Direita */
-        .main_right {
+        /* Agora posicionado à esquerda */
+        .main_left_side {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -180,9 +181,9 @@
             text-align: center;
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.7);
-            background: none; /* Remove o fundo */
-            border: none; /* Remove a borda */
-            backdrop-filter: none; /* Remove o desfoque */
+            background: none; 
+            border: none; 
+            backdrop-filter: none; 
         }
 
         footer b {
@@ -237,8 +238,8 @@
 
         @media (max-width: 768px) {
             .box_center { flex-direction: column; }
-            .main_content { flex-direction: column; }
-            .main_left { width: 100%; }
+            .main_content { flex-direction: column-reverse; } /* Garante que no mobile o perfil apareça no topo antes do vídeo */
+            .main_right_side { width: 100%; }
             .aside_bar { flex-direction: row; width: 100%; justify-content: center; }
             .video_box { min-height: 250px; }
         }
@@ -257,7 +258,18 @@
                 </aside>
 
                 <main class="main_content flex">
-                    <div class="main_left flex">
+                    <!-- LADO ESQUERDO: Vídeo e Banner -->
+                    <div class="main_left_side">
+                        <div class="photo_banner flex">
+                            <img loading="lazy" src="https://i.imgur.com/KLqr3py.gif" alt="Banner">
+                        </div>
+                        <div class="video_box">
+                            <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/6VLu7j7e60U" title="Video Principal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- LADO DIREITO: Avatar, Nome e Info -->
+                    <div class="main_right_side flex">
                         <div class="user_data flex">
                             <div class="user_data__img flex">
                                 <img src="https://i.imgur.com/hUE2ZmG.png" alt="Name">
@@ -273,15 +285,6 @@
                         </div>
                         <div class="user_about">
                             <p>"Nada es imposible para ti, Dios"</p>
-                        </div>
-                    </div>
-
-                    <div class="main_right">
-                        <div class="photo_banner flex">
-                            <img loading="lazy" src="https://i.imgur.com/KLqr3py.gif" alt="Banner">
-                        </div>
-                        <div class="video_box">
-                            <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/6VLu7j7e60U" title="Video Principal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
                 </main>
